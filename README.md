@@ -21,6 +21,10 @@ Il est composé de différents modules :
 L'applicatif est fonctionnel et vous pouvez le tester en exécutant la classe `Main` du module `main-application`.
 Un prompt de commande s'ouvre et vous propose de choisir une action à réaliser.
 
+Vérifier que c'est le bon jdk qui est utilisé. Pour cela, allez dans le menu `File` > `Project Structure` > `Project`.
+Vérifiez que le `Project SDK` est bien configuré sur le jdk 21.
+![Vérification du jdk](./config-jdk-21.png)
+
 Pour avoir la liste des commandes disponibles, tapez `help`.
 ![Prompt de l'application](./maven-sensor-hub-prompt.png)
 
