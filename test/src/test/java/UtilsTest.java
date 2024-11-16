@@ -1,5 +1,3 @@
-package com.jad.utils;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
