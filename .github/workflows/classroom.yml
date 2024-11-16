@@ -40,6 +40,6 @@ jobs:
       - name: Autograding Reporter
         uses: ./
         env:
-          TEST-DM-DEP-MA_RESULTS: "${{steps.test.outputs.result}}"
+          TEST-DM-DEP-MA_RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
         with:
           runners: test-dm-dep-ma
