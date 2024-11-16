@@ -70,9 +70,3 @@ Pour visualiser les résultats des tests, cliquez sur l'onglet `Actions` de votr
 Cliquez ensuite `Autograding` pour voir le détail des tests.
 
 Pour le moment, les dépendances entre les modules sont mauvaises. Les tests échouent donc.
-
-## Livrable
-
-### N'oubliez pas de faire un `push` de votre code avant la fin.
-
-### Idéalement faîtes moi un `merge` sur la branche `master`.

@@ -1,4 +1,4 @@
-name: GitHub Classroom Workflow
+name: Autograding Tests
 
 on:
   - push
@@ -10,21 +10,199 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Autograding
+  run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4.5.0
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
 
-      - name: Generate Dependency Tree
-        run: mvn dependency:tree -DoutputFile=target/dependency-tree.txt -Daggregate=true
+      - name: Test data-management dependency test with main-application
+        id: test-data-management-dependency-test-with-main-application
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with main-application
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=DataManagementTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
 
-      - uses: education/autograding@v1
+      - name: Test data-management dependency test with report-generation
+        id: test-data-management-dependency-test-with-report-generation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with report-generation
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=DataManagementTest#testReportGenerationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test data-management dependency test with sensor-data-collection
+        id: test-data-management-dependency-test-with-sensor-data-collection
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with sensor-data-collection
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=DataManagementTest#testReportGenerationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test data-management dependency test with user-interface
+        id: test-data-management-dependency-test-with-user-interface
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with user-interface
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=DataManagementTest#testUserInterfaceDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test report-generation dependency test with data-management
+        id: test-report-generation-dependency-test-with-data-management
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with data-management
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=ReportGenerationTest#testDataManagementDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test report-generation dependency test with main-application
+        id: test-report-generation-dependency-test-with-main-application
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with main-application
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=ReportGenerationTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test report-generation dependency test with sensor-data-collection
+        id: test-report-generation-dependency-test-with-sensor-data-collection
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with sensor-data-collection
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=ReportGenerationTest#testSensorDataCollectionDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 5
+
+      - name: Test report-generation dependency test with user-interface
+        id: test-report-generation-dependency-test-with-user-interface
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with user-interface
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=ReportGenerationTest#testUserInterfaceDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test sensor-data-collection dependency test with data-management
+        id: test-sensor-data-collection-dependency-test-with-data-management
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test sensor-data-collection dependency test with data-management
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=SensorDataCollectionTest#testDataManagementDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test sensor-data-collection dependency test with main-application
+        id: test-sensor-data-collection-dependency-test-with-main-application
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test sensor-data-collection dependency test with main-application
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=SensorDataCollectionTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test sensor-data-collection dependency test with report-generation
+        id: test-sensor-data-collection-dependency-test-with-report-generation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test sensor-data-collection dependency test with report-generation
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=SensorDataCollectionTest#testReportGenerationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test sensor-data-collection dependency test with user-interface
+        id: test-sensor-data-collection-dependency-test-with-user-interface
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test sensor-data-collection dependency test with user-interface
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=SensorDataCollectionTest#testUserInterfaceDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test user-interface dependency test with data-management
+        id: test-user-interface-dependency-test-with-data-management
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test user-interface dependency test with data-management
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=UserInterfaceTest#testDataManagementDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 5
+
+      - name: Test user-interface dependency test with main-application
+        id: test-user-interface-dependency-test-with-main-application
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test user-interface dependency test with main-application
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=UserInterfaceTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test user-interface dependency test with report-generation
+        id: test-user-interface-dependency-test-with-report-generation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test user-interface dependency test with report-generation
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=UserInterfaceTest#testReportGenerationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test user-interface dependency test with sensor-data-collection
+        id: test-user-interface-dependency-test-with-sensor-data-collection
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test user-interface dependency test with sensor-data-collection
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=UserInterfaceTest#testSensorDataCollectionDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 5
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-data-management-dependency-test-with-main-application.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-data-management-dependency-test-with-report-generation.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-data-management-dependency-test-with-sensor-data-collection.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-data-management-dependency-test-with-user-interface.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-report-generation-dependency-test-with-data-management.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-report-generation-dependency-test-with-main-application.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-report-generation-dependency-test-with-sensor-data-collection.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-report-generation-dependency-test-with-user-interface.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-data-management.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-main-application.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-report-generation.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-user-interface.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-user-interface-dependency-test-with-data-management.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-user-interface-dependency-test-with-main-application.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-user-interface-dependency-test-with-report-generation.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-user-interface-dependency-test-with-sensor-data-collection.outputs.result}}"
+
+        with:
+          runners: test-data-management-dependency-test-with-main-application,test-data-management-dependency-test-with-report-generation,test-data-management-dependency-test-with-sensor-data-collection,test-data-management-dependency-test-with-user-interface,test-report-generation-dependency-test-with-data-management,test-report-generation-dependency-test-with-main-application,test-report-generation-dependency-test-with-sensor-data-collection,test-report-generation-dependency-test-with-user-interface,test-sensor-data-collection-dependency-test-with-data-management,test-sensor-data-collection-dependency-test-with-main-application,test-sensor-data-collection-dependency-test-with-report-generation,test-sensor-data-collection-dependency-test-with-user-interface,test-user-interface-dependency-test-with-data-management,test-user-interface-dependency-test-with-main-application,test-user-interface-dependency-test-with-report-generation,test-user-interface-dependency-test-with-sensor-data-collection
