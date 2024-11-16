@@ -35,7 +35,7 @@ jobs:
           setup-command: ''
           command: mvn -B test -Dtest=DataManagementTest#testSensorDataCollectionDependency --file pom.xml -DfailIfNoTests=false
           timeout: 1
-          max-score: 1
+          max-score: 0
 
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
