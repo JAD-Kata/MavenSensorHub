@@ -33,9 +33,9 @@ jobs:
         with:
           test-name: Test data-management dependency test with main-application
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=DataManagementTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          command: mvn -B -q -fae test -Dtest=DataManagementTest#testMainApplicationDependency --file pom.xml
           timeout: 1
-          max-score: 0
+          max-score: 1
 
       - name: Test data-management dependency test with report-generation
         id: test-dm-dep-rg
