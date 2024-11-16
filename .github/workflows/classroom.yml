@@ -190,21 +190,6 @@ jobs:
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          TEST_DM_DEP_MA_RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
-          TEST_DM_DEP_RG_RESULTS: "${{steps.test-dm-dep-rg.outputs.result}}"
-          TEST_DM_DEP_SDC_RESULTS: "${{steps.test-dm-dep-sdc.outputs.result}}"
-          TEST_DM_DEP_UI_RESULTS: "${{steps.test-dm-dep-ui.outputs.result}}"
-          TEST_RG_DEP_DM_RESULTS: "${{steps.test-rg-dep-dm.outputs.result}}"
-          TEST_RG_DEP_MA_RESULTS: "${{steps.test-rg-dep-ma.outputs.result}}"
-          TEST_RG_DEP_SDC_RESULTS: "${{steps.test-rg-dep-sdc.outputs.result}}"
-          TEST_RG_DEP_UI_RESULTS: "${{steps.test-rg-dep-ui.outputs.result}}"
-          TEST_SDC_DEP_DM_RESULTS: "${{steps.test-sdc-dep-dm.outputs.result}}"
-          TEST_SDC_DEP_MA_RESULTS: "${{steps.test-sdc-dep-ma.outputs.result}}"
-          TEST_SDC_DEP_RG_RESULTS: "${{steps.test-sdc-dep-rg.outputs.result}}"
-          TEST_SDC_DEP_UI_RESULTS: "${{steps.test-sdc-dep-ui.outputs.result}}"
-          TEST_UI_DEP_DM_RESULTS: "${{steps.test-ui-dep-dm.outputs.result}}"
-          TEST_UI_DEP_MA_RESULTS: "${{steps.test-ui-dep-ma.outputs.result}}"
-          TEST_UI_DEP_RG_RESULTS: "${{steps.test-ui-dep-rg.outputs.result}}"
-          TEST_UI_DEP_SDC_RESULTS: "${{steps.test-ui-dep-sdc.outputs.result}}"
+          TEST-DM-DEP-MA-RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
         with:
-          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdc,test-dm-dep-ui
+          runners: test-dm-dep-ma
