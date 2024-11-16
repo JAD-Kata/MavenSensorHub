@@ -1,5 +1,3 @@
-package com.jad.reportgeneration;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

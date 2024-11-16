@@ -55,7 +55,7 @@ jobs:
           setup-command: ''
           command: mvn -B test -Dtest=DataManagementTest#testSensorDataCollectionDependency --file pom.xml -DfailIfNoTests=false
           timeout: 1
-          max-score: 0
+          max-score: 5
 
       - name: Test data-management dependency test with user-interface
         id: test-dm-dep-ui
@@ -67,6 +67,46 @@ jobs:
           timeout: 1
           max-score: 0
 
+      - name: Test report-generation dependency test with data-management
+        id: test-rg-dep-dm
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with data-management
+          setup-command: ''
+          command: mvn -B test -Dtest=ReportGenerationTest#testDataManagementDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test report-generation dependency test with main-application
+        id: test-rg-dep-ma
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with main-application
+          setup-command: ''
+          command: mvn -B test -Dtest=ReportGenerationTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test report-generation dependency test with sensor-data-collection
+        id: test-rg-dep-sdg
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with sensor-data-collection
+          setup-command: ''
+          command: mvn -B test -Dtest=ReportGenerationTest#testSensorDataCollectionDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test report-generation dependency test with user-interface
+        id: test-rg-dep-ui
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test report-generation dependency test with user-interface
+          setup-command: ''
+          command: mvn -B test -Dtest=ReportGenerationTest#testUserInterfaceDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
@@ -74,5 +114,9 @@ jobs:
           TEST-DM-DEP-RG_RESULTS: "${{steps.test-dm-dep-rg.outputs.result}}"
           TEST-DM-DEP-SDG_RESULTS: "${{steps.test-dm-dep-sdg.outputs.result}}"
           TEST-DM-DEP-UI_RESULTS: "${{steps.test-dm-dep-ui.outputs.result}}"
+          TEST-RG-DEP-DM_RESULTS: "${{steps.test-rg-dep-dm.outputs.result}}"
+          TEST-RG-DEP-MA_RESULTS: "${{steps.test-rg-dep-ma.outputs.result}}"
+          TEST-RG-DEP-SDG_RESULTS: "${{steps.test-rg-dep-sdg.outputs.result}}"
+          TEST-RG-DEP-UI_RESULTS: "${{steps.test-rg-dep-ui.outputs.result}}"
         with:
-          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdg,test-dm-dep-ui
+          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdg,test-dm-dep-ui,test-rg-dep-dm,test-rg-dep-ma,test-rg-dep-sdg,test-rg-dep-ui
