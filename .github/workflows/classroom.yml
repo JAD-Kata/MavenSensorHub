@@ -38,7 +38,7 @@ jobs:
           max-score: 0
 
       - name: Autograding Reporter
-        uses: ./
+        uses: classroom-resources/autograding-grading-reporter@v1
         env:
           TEST-DM-DEP-MA_RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
         with:
