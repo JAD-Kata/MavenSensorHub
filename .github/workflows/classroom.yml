@@ -206,6 +206,5 @@ jobs:
           TEST_USER_INTERFACE_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-ui-dep-ma.outputs.result}}"
           TEST_USER_INTERFACE_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-ui-dep-rg.outputs.result}}"
           TEST_USER_INTERFACE_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-ui-dep-sdc.outputs.result}}"
-
         with:
-          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdc,test-dm-dep-ui,test-rg-dep-dm,test-rg-dep-ma,test-rg-dep-sdc,test-rg-dep-ui,test-sdc-dep-dm,test-sdc-dep-ma,test-sdc-dep-rg,test-sdc-dep-ui,test-ui-dep-dm,test-ui-dep-ma,test-ui-dep-rg,test-ui-dep-sdc
+          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdc,test-dm-dep-ui
