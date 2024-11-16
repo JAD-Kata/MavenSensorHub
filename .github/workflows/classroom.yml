@@ -24,8 +24,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Generate Dependency Tree
+        run: mvn -q dependency:tree -DoutputFile=target/dependency-tree.txt -Daggregate=true
+
       - name: Test data-management dependency test with main-application
-        id: test-data-management-dependency-test-with-main-application
+        id: test-dm-dep-ma
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test data-management dependency test with main-application
@@ -35,7 +38,7 @@ jobs:
           max-score: 0
 
       - name: Test data-management dependency test with report-generation
-        id: test-data-management-dependency-test-with-report-generation
+        id: test-dm-dep-rg
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test data-management dependency test with report-generation
@@ -45,7 +48,7 @@ jobs:
           max-score: 0
 
       - name: Test data-management dependency test with sensor-data-collection
-        id: test-data-management-dependency-test-with-sensor-data-collection
+        id: test-dm-dep-sdc
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test data-management dependency test with sensor-data-collection
@@ -55,7 +58,7 @@ jobs:
           max-score: 0
 
       - name: Test data-management dependency test with user-interface
-        id: test-data-management-dependency-test-with-user-interface
+        id: test-dm-dep-ui
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test data-management dependency test with user-interface
@@ -65,7 +68,7 @@ jobs:
           max-score: 0
 
       - name: Test report-generation dependency test with data-management
-        id: test-report-generation-dependency-test-with-data-management
+        id: test-rg-dep-dm
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test report-generation dependency test with data-management
@@ -75,7 +78,7 @@ jobs:
           max-score: 0
 
       - name: Test report-generation dependency test with main-application
-        id: test-report-generation-dependency-test-with-main-application
+        id: test-rg-dep-ma
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test report-generation dependency test with main-application
@@ -85,7 +88,7 @@ jobs:
           max-score: 0
 
       - name: Test report-generation dependency test with sensor-data-collection
-        id: test-report-generation-dependency-test-with-sensor-data-collection
+        id: test-rg-dep-sdc
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test report-generation dependency test with sensor-data-collection
@@ -95,7 +98,7 @@ jobs:
           max-score: 5
 
       - name: Test report-generation dependency test with user-interface
-        id: test-report-generation-dependency-test-with-user-interface
+        id: test-rg-dep-ui
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test report-generation dependency test with user-interface
@@ -105,7 +108,7 @@ jobs:
           max-score: 0
 
       - name: Test sensor-data-collection dependency test with data-management
-        id: test-sensor-data-collection-dependency-test-with-data-management
+        id: test-sdc-dep-dm
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test sensor-data-collection dependency test with data-management
@@ -115,7 +118,7 @@ jobs:
           max-score: 0
 
       - name: Test sensor-data-collection dependency test with main-application
-        id: test-sensor-data-collection-dependency-test-with-main-application
+        id: test-sdc-dep-ma
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test sensor-data-collection dependency test with main-application
@@ -125,7 +128,7 @@ jobs:
           max-score: 0
 
       - name: Test sensor-data-collection dependency test with report-generation
-        id: test-sensor-data-collection-dependency-test-with-report-generation
+        id: test-sdc-dep-rg
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test sensor-data-collection dependency test with report-generation
@@ -135,7 +138,7 @@ jobs:
           max-score: 0
 
       - name: Test sensor-data-collection dependency test with user-interface
-        id: test-sensor-data-collection-dependency-test-with-user-interface
+        id: test-sdc-dep-ui
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test sensor-data-collection dependency test with user-interface
@@ -145,7 +148,7 @@ jobs:
           max-score: 0
 
       - name: Test user-interface dependency test with data-management
-        id: test-user-interface-dependency-test-with-data-management
+        id: test-ui-dep-dm
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test user-interface dependency test with data-management
@@ -155,7 +158,7 @@ jobs:
           max-score: 5
 
       - name: Test user-interface dependency test with main-application
-        id: test-user-interface-dependency-test-with-main-application
+        id: test-ui-dep-ma
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test user-interface dependency test with main-application
@@ -165,7 +168,7 @@ jobs:
           max-score: 0
 
       - name: Test user-interface dependency test with report-generation
-        id: test-user-interface-dependency-test-with-report-generation
+        id: test-ui-dep-rg
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test user-interface dependency test with report-generation
@@ -175,7 +178,7 @@ jobs:
           max-score: 0
 
       - name: Test user-interface dependency test with sensor-data-collection
-        id: test-user-interface-dependency-test-with-sensor-data-collection
+        id: test-ui-dep-sdc
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test user-interface dependency test with sensor-data-collection
@@ -187,22 +190,22 @@ jobs:
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-data-management-dependency-test-with-main-application.outputs.result}}"
-          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-data-management-dependency-test-with-report-generation.outputs.result}}"
-          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-data-management-dependency-test-with-sensor-data-collection.outputs.result}}"
-          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-data-management-dependency-test-with-user-interface.outputs.result}}"
-          TEST_REPORT_GENERATION_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-report-generation-dependency-test-with-data-management.outputs.result}}"
-          TEST_REPORT_GENERATION_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-report-generation-dependency-test-with-main-application.outputs.result}}"
-          TEST_REPORT_GENERATION_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-report-generation-dependency-test-with-sensor-data-collection.outputs.result}}"
-          TEST_REPORT_GENERATION_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-report-generation-dependency-test-with-user-interface.outputs.result}}"
-          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-data-management.outputs.result}}"
-          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-main-application.outputs.result}}"
-          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-report-generation.outputs.result}}"
-          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-sensor-data-collection-dependency-test-with-user-interface.outputs.result}}"
-          TEST_USER_INTERFACE_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-user-interface-dependency-test-with-data-management.outputs.result}}"
-          TEST_USER_INTERFACE_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-user-interface-dependency-test-with-main-application.outputs.result}}"
-          TEST_USER_INTERFACE_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-user-interface-dependency-test-with-report-generation.outputs.result}}"
-          TEST_USER_INTERFACE_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-user-interface-dependency-test-with-sensor-data-collection.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-dm-dep-rg.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-dm-dep-sdc.outputs.result}}"
+          TEST_DATA_MANAGEMENT_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-dm-dep-ui.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-rg-dep-dm.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-rg-dep-ma.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-rg-dep-sdc.outputs.result}}"
+          TEST_REPORT_GENERATION_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-rg-dep-ui.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-sdc-dep-dm.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-sdc-dep-ma.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-sdc-dep-rg.outputs.result}}"
+          TEST_SENSOR_DATA_COLLECTION_DEPENDENCY_WITH_USER_INTERFACE_RESULTS: "${{steps.test-sdc-dep-ui.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_DATA_MANAGEMENT_RESULTS: "${{steps.test-ui-dep-dm.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_MAIN_APPLICATION_RESULTS: "${{steps.test-ui-dep-ma.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_REPORT_GENERATION_RESULTS: "${{steps.test-ui-dep-rg.outputs.result}}"
+          TEST_USER_INTERFACE_DEPENDENCY_WITH_SENSOR_DATA_COLLECTION_RESULTS: "${{steps.test-ui-dep-sdc.outputs.result}}"
 
         with:
-          runners: test-data-management-dependency-test-with-main-application,test-data-management-dependency-test-with-report-generation,test-data-management-dependency-test-with-sensor-data-collection,test-data-management-dependency-test-with-user-interface,test-report-generation-dependency-test-with-data-management,test-report-generation-dependency-test-with-main-application,test-report-generation-dependency-test-with-sensor-data-collection,test-report-generation-dependency-test-with-user-interface,test-sensor-data-collection-dependency-test-with-data-management,test-sensor-data-collection-dependency-test-with-main-application,test-sensor-data-collection-dependency-test-with-report-generation,test-sensor-data-collection-dependency-test-with-user-interface,test-user-interface-dependency-test-with-data-management,test-user-interface-dependency-test-with-main-application,test-user-interface-dependency-test-with-report-generation,test-user-interface-dependency-test-with-sensor-data-collection
+          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdc,test-dm-dep-ui,test-rg-dep-dm,test-rg-dep-ma,test-rg-dep-sdc,test-rg-dep-ui,test-sdc-dep-dm,test-sdc-dep-ma,test-sdc-dep-rg,test-sdc-dep-ui,test-ui-dep-dm,test-ui-dep-ma,test-ui-dep-rg,test-ui-dep-sdc
