@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class SensorDataCollectionTest {
-    private static final String DEPENDENCY_TREE_FILE = "target/dependency-tree.txt";
+    private static final String DEPENDENCY_TREE_FILE = "../sensor-data-collection/target/dependency-tree.txt";
     private static final String DEPENDENCY_PREFIX = "com.jad:";
     private static String DEPENDENCY_TREE;
 

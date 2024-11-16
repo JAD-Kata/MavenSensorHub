@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class UserInterfaceTest {
-    private static final String DEPENDENCY_TREE_FILE = "target/dependency-tree.txt";
+    private static final String DEPENDENCY_TREE_FILE = "../user-interface/target/dependency-tree.txt";
     private static final String DEPENDENCY_PREFIX = "com.jad:";
     private static String DEPENDENCY_TREE;
 

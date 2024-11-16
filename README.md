@@ -66,6 +66,10 @@ Des tests unitaires sont fournis pour valider votre implémentation.
 
 À chaque `commit and push`, les tests sont exécutés automatiquement par GitHub Actions.
 
+Certains tests passent, d'autres échouent. Naturellement, ceux qui échouent sont ceux qui rapportent des points.
+Cela ne veut pas dire que les tests qui ne rapportent pas de points sont inutiles. Ils doivent, eux aussi passer quoi
+qu'il arrive.
+
 Pour visualiser les résultats des tests, cliquez sur l'onglet `Actions` de votre dépôt GitHub.
 Cliquez ensuite `Autograding` pour voir le détail des tests.
 
