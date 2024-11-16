@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  run-autograding-tests:
+  jad-autograding:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
@@ -86,4 +86,4 @@ jobs:
           TEST-USER-INTERFACE-DP_RESULTS: "${{steps.test-user-interface-dp.outputs.result}}"
           TEST-UTILS-DP_RESULTS: "${{steps.test-utils-dp.outputs.result}}"
         with:
-          runners: test-data-management-dp
+          runners: test-data-management-dp,test-report-generation-dp,test-sensor-data-collection-dp,test-user-interface-dp,test-utils-dp
