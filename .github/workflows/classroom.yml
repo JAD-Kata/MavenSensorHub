@@ -28,7 +28,7 @@ jobs:
         run: mvn -q dependency:tree -DoutputFile=target/dependency-tree.txt -Daggregate=true
 
       - name: Test data-management dependency test with main-application
-        id: test-dm-dep-ma
+        id: test
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test data-management dependency test with main-application
@@ -40,6 +40,6 @@ jobs:
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          TEST-DM-DEP-MA-RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
+          TEST: "${{steps.test.outputs.result}}"
         with:
-          runners: test-dm-dep-ma
+          runners: test
