@@ -33,7 +33,37 @@ jobs:
         with:
           test-name: Test data-management dependency test with main-application
           setup-command: ''
+          command: mvn -B test -Dtest=DataManagementTest#testMainApplicationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test data-management dependency test with report-generation
+        id: test-dm-dep-rg
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with report-generation
+          setup-command: ''
+          command: mvn -B test -Dtest=DataManagementTest#testReportGenerationDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test data-management dependency test with sensor-data-collection
+        id: test-dm-dep-sdg
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with sensor-data-collection
+          setup-command: ''
           command: mvn -B test -Dtest=DataManagementTest#testSensorDataCollectionDependency --file pom.xml -DfailIfNoTests=false
+          timeout: 1
+          max-score: 0
+
+      - name: Test data-management dependency test with user-interface
+        id: test-dm-dep-ui
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test data-management dependency test with user-interface
+          setup-command: ''
+          command: mvn -B test -Dtest=DataManagementTest#testUserInterfaceDependency --file pom.xml -DfailIfNoTests=false
           timeout: 1
           max-score: 0
 
@@ -41,5 +71,8 @@ jobs:
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
           TEST-DM-DEP-MA_RESULTS: "${{steps.test-dm-dep-ma.outputs.result}}"
+          TEST-DM-DEP-RG_RESULTS: "${{steps.test-dm-dep-rg.outputs.result}}"
+          TEST-DM-DEP-SDG_RESULTS: "${{steps.test-dm-dep-sdg.outputs.result}}"
+          TEST-DM-DEP-UI_RESULTS: "${{steps.test-dm-dep-ui.outputs.result}}"
         with:
-          runners: test-dm-dep-ma
+          runners: test-dm-dep-ma,test-dm-dep-rg,test-dm-dep-sdg,test-dm-dep-ui
