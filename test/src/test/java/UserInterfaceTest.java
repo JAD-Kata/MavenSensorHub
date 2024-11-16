@@ -19,6 +19,14 @@ public class UserInterfaceTest {
     }
 
     @Test
+    void doAllTests() {
+        this.testDataManagementDependency();
+        this.testMainApplicationDependency();
+        this.testReportGenerationDependency();
+        this.testSensorDataCollectionDependency();
+    }
+
+    @Test
     void testDataManagementDependency() {
         assertFalse(UserInterfaceTest.DEPENDENCY_TREE.contains(UserInterfaceTest.DEPENDENCY_PREFIX + "data-management"),
                     "Dependency 'data-management' should not be present");

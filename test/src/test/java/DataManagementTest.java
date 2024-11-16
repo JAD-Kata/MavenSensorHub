@@ -19,6 +19,14 @@ public class DataManagementTest {
     }
 
     @Test
+    void doAllTests() {
+        this.testMainApplicationDependency();
+        this.testReportGenerationDependency();
+        this.testSensorDataCollectionDependency();
+        this.testUserInterfaceDependency();
+    }
+
+    @Test
     void testMainApplicationDependency() {
         assertFalse(
                 DataManagementTest.DEPENDENCY_TREE.contains(DataManagementTest.DEPENDENCY_PREFIX + "main-application"),

@@ -19,6 +19,14 @@ class SensorDataCollectionTest {
     }
 
     @Test
+    void doAllTests() {
+        this.testDataManagementDependency();
+        this.testMainApplicationDependency();
+        this.testReportGenerationDependency();
+        this.testUserInterfaceDependency();
+    }
+
+    @Test
     void testDataManagementDependency() {
         assertFalse(
                 SensorDataCollectionTest.DEPENDENCY_TREE.contains(

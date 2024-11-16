@@ -19,6 +19,14 @@ public class ReportGenerationTest {
     }
 
     @Test
+    void doAllTests() {
+        this.testDataManagementDependency();
+        this.testMainApplicationDependency();
+        this.testSensorDataCollectionDependency();
+        this.testUserInterfaceDependency();
+    }
+
+    @Test
     void testDataManagementDependency() {
         assertFalse(
                 ReportGenerationTest.DEPENDENCY_TREE.contains(
