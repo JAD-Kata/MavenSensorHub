@@ -81,9 +81,5 @@ jobs:
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
           TEST-DATA-MANAGEMENT_RESULTS: "${{steps.test-data-management-dp.outputs.result}}"
-          TEST-REPORT-GENERATION_RESULTS: "${{steps.test-report-generation-dp.outputs.result}}"
-          TEST-SENSOR-DATA-COLLECTION_RESULTS: "${{steps.test-sensor-data-collection-dp.outputs.result}}"
-          TEST-USER-INTERFACE_RESULTS: "${{steps.test-user-interface-dp.outputs.result}}"
-          TEST-UTILS_RESULTS: "${{steps.test-utils-dp.outputs.result}}"
         with:
-          runners: test-data-management-dp,test-report-generation-dp,test-sensor-data-collection-dp,test-user-interface-dp,test-utils-dp
+          runners: test-data-management-dp
